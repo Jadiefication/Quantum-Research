@@ -74,3 +74,11 @@ class QuantumGates:
     I2 = np.eye(2, dtype=complex)
     I4 = np.eye(4, dtype=complex)
     I8 = np.eye(8, dtype=complex)
+
+    @staticmethod
+    def get_value(idx, q1_idx):
+        return (idx >> q1_idx) & 1
+
+    @staticmethod
+    def flip(idx, target_idx):
+        return idx ^ (1 << target_idx)
