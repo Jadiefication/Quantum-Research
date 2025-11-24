@@ -82,3 +82,14 @@ class QuantumGates:
     @staticmethod
     def flip(idx, target_idx):
         return idx ^ (1 << target_idx)
+
+    @staticmethod
+    def ensure_qubits(state, *qubit_indices):
+        max_q = max(qubit_indices)
+        required = 2 ** (max_q + 1)
+
+        if state.size < required:
+            new_state = np.zeros(required, dtype=state.dtype)
+            new_state[:state.size] = state
+            return new_state
+        return state
